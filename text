@@ -1,0 +1,28 @@
+amartinez = {
+  token:
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6MSwiVXNlcm5hbWUiOiJhbWFydGluZXoiLCJFbWFpbCI6ImFtYXJ0aW5lekBnbWFpbC5jb20iLCJpYXQiOjE3NjQyNTExODMsImV4cCI6MTc2NDg1NTk4M30.t-wl6aBp-mVLFJQpt8M4-j2uBJ2D0Df34T2yfDNLjbQ",
+  user: {
+    Id: 1,
+    Username: "amartinez",
+    Email: "amartinez@gmail.com",
+    DisplayName: "amartinez",
+    AvatarUrl: "https://image.url.com",
+  },
+};
+
+ebravo = {
+  token:
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6MiwiVXNlcm5hbWUiOiJlYnJhdm8iLCJFbWFpbCI6ImVicmF2b0BnbWFpbC5jb20iLCJpYXQiOjE3NjQyNTE2NTYsImV4cCI6MTc2NDg1NjQ1Nn0.Ym2Db62Ht-vsJtxGEKgkrqTjSKNJMLyvdtYbc9hLH_I",
+  user: {
+    Id: 2,
+    Username: "ebravo",
+    Email: "ebravo@gmail.com",
+    DisplayName: "ebravo",
+    AvatarUrl: "https://image.url.com",
+  },
+};
+
+// http://localhost:8080/places?place=San%20Francisco%2C%20CA&radius=48280
+// http://localhost:8080/places?place=Austin%2C%20TX
+// http://localhost:8080/places?place=10001
+// http://localhost:8080/places?lat=30.2672&lng=-97.7431&radius=16093

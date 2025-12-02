@@ -1,0 +1,22 @@
+{
+  "name": "bridge-backend-nodejs",
+  "version": "1.0.0",
+  "description": "This is the initial backend for an MVP application named Bridge",
+  "license": "ISC",
+  "author": "Alexey Gallego Martinez",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "sequelize": "^6.37.7",
+    "tedious": "^19.1.3"
+  }
+}
