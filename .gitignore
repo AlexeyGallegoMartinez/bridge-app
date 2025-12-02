@@ -1,0 +1,6 @@
+bridge-njs/node_modules/
+bridge-rn/node_modules/
+
+bridge-njs/.env.development
+bridge-rn/.env.development/
+

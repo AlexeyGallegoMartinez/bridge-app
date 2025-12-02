@@ -17,5 +17,4 @@ app.listen(PORT, HOST, async () => {
   console.log(`Server is running on port ${PORT} [${process.env.NODE_ENV}]`);
   await initializeDB();
   // Ensure PostLikes table exists for like toggling
-  await PostLike.sync();
 });
