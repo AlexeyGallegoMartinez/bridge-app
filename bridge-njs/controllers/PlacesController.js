@@ -13,7 +13,7 @@ const PlacesController = {
       const { lat, lng, place, radius } = req.query;
       const keyword =
         req.query.keyword ||
-        "autism services ABA therapy speech therapy occupational therapy";
+        "autism services ABA therapy speech therapy occupational therapy music therapy animal therapy special needs services";
       let url;
       const hasPlaceQuery = !!(place || req.query.q);
       const searchRadius = radius || 80467; // default ~50 miles
@@ -56,6 +56,7 @@ const PlacesController = {
       }
 
       const data = await response.json();
+      console.log(data);
       if (
         data.status &&
         data.status !== "OK" &&
@@ -79,7 +80,33 @@ const PlacesController = {
         googleMapsUri: `https://www.google.com/maps/place/?q=place_id:${item.place_id}`,
       }));
 
-      res.json({ count: places.length, places });
+      // Fetch phone/website details for each place
+      const enriched = await Promise.all(
+        places.map(async (place) => {
+          try {
+            const detailsUrl = new URL(
+              "https://maps.googleapis.com/maps/api/place/details/json"
+            );
+            detailsUrl.searchParams.set("place_id", place.id);
+            detailsUrl.searchParams.set("fields", "formatted_phone_number,website");
+            detailsUrl.searchParams.set("key", apiKey);
+
+            const detailRes = await fetch(detailsUrl);
+            if (!detailRes.ok) return place;
+            const detailData = await detailRes.json();
+            const result = detailData.result || {};
+            return {
+              ...place,
+              phoneNumber: result.formatted_phone_number,
+              website: result.website,
+            };
+          } catch (err) {
+            return place;
+          }
+        })
+      );
+
+      res.json({ count: enriched.length, places: enriched });
     } catch (error) {
       next(error);
     }

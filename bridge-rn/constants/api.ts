@@ -92,6 +92,11 @@ export const api = {
     ImageUrl?: string | null;
     VideoUrl?: string | null;
   }) => request<any>("/posts", { method: "POST", body: payload }),
+  updatePost: (
+    id: number | string,
+    payload: { Text?: string; ImageUrl?: string | null; VideoUrl?: string | null }
+  ) => request<any>(`/posts/${id}`, { method: "PUT", body: payload }),
+  deletePost: (id: number | string) => request<void>(`/posts/${id}`, { method: "DELETE" }),
   likePost: (id: number | string) => request<any>(`/posts/${id}/like`, { method: "POST" }),
   addComment: (payload: { PostId: number | string; Text: string }) =>
     request<any>("/comments", { method: "POST", body: payload }),

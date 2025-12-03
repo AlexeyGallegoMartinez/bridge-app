@@ -25,6 +25,8 @@ type ServicePlace = {
   userRatingsTotal?: number;
   coordinate?: { latitude: number; longitude: number };
   googleMapsUri?: string;
+  phoneNumber?: string;
+  website?: string;
 };
 
 const FALLBACK_COORDINATE = { latitude: 30.2672, longitude: -97.7431 };
@@ -100,6 +102,8 @@ export default function ServicesScreen() {
             ? { latitude: item.location.lat, longitude: item.location.lng }
             : undefined,
         googleMapsUri: item.googleMapsUri,
+        phoneNumber: item.phoneNumber,
+        website: item.website,
       }));
 
       setServices(mapped);
@@ -152,13 +156,30 @@ export default function ServicesScreen() {
               </ThemedText>
             ) : null}
           </View>
-          {item.googleMapsUri ? (
-            <TouchableOpacity
-              style={styles.mapButton}
-              onPress={() => Linking.openURL(item.googleMapsUri || "")}
-            >
-              <ThemedText style={styles.mapButtonText}>Open in Maps</ThemedText>
-            </TouchableOpacity>
+          {item.phoneNumber ? (
+            <View style={styles.metaRow}>
+              <ThemedText style={styles.metaText}>{item.phoneNumber}</ThemedText>
+            </View>
+          ) : null}
+          {(item.googleMapsUri || item.website) ? (
+            <View style={styles.mapButtonsRow}>
+              {item.googleMapsUri ? (
+                <TouchableOpacity
+                  style={styles.mapButton}
+                  onPress={() => Linking.openURL(item.googleMapsUri || "")}
+                >
+                  <ThemedText style={styles.mapButtonText}>Open in Maps</ThemedText>
+                </TouchableOpacity>
+              ) : null}
+              {item.website ? (
+                <TouchableOpacity
+                  style={styles.mapButton}
+                  onPress={() => Linking.openURL(item.website || "")}
+                >
+                  <ThemedText style={styles.mapButtonText}>Website</ThemedText>
+                </TouchableOpacity>
+              ) : null}
+            </View>
           ) : null}
         </View>
       </ThemedView>
@@ -533,13 +554,18 @@ const styles = StyleSheet.create({
     color: "#0ea5e9",
     fontWeight: "600",
   },
-  mapButton: {
+  mapButtonsRow: {
+    flexDirection: "row",
+    gap: 8,
     marginTop: 8,
+  },
+  mapButton: {
     paddingVertical: 10,
     paddingHorizontal: 12,
     backgroundColor: "#0ea5e9",
     borderRadius: 10,
-    alignSelf: "flex-start",
+    flex: 1,
+    alignItems: "center",
   },
   mapButtonText: {
     color: "#fff",
